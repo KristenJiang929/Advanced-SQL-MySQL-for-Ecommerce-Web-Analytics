@@ -12,7 +12,7 @@ SELECT
   http_referer, 
   COUNT(DISTINCT website_session_id) as number_of_sessions 
 FROM  website_sessions 
-WHERE created_at < "2012-04-12"
+WHERE created_at < "2012-04-14"
 GROUP BY utm_source, utm_campaign, http_referer
 ORDER BY number_of_sessions DESC
 
@@ -30,4 +30,24 @@ FROM website_sessions ws
 LEFT JOIN orders o USING(website_session_id)
 WHERE ws.created_at < "2012-04-14"
   AND utm_source = 'gsearch'
-  AND utm_campaign = 'nonbrand''
+  AND utm_campaign = 'nonbrand'
+
+
+BID OPTIMIZATION: Understand the  value of various segments of pard traffic, so that you cna optimize your marketing budget
+
+*Using conversion rate and revenue per click analysies to figure out how much you shold spend per click to acquire customers
+*Understanding how you website and products perform for various subsegments of traffic (i.e.mobile vs desktop) to optimize within channels
+*Analyzing the impact that bid changes have on your ranking in the auctions, and the volume of customers driven to your site
+
+3.Gsearch volume trends
+gsearch nonbrand trended session volume, by week, to see if the bid changes have caused volume to drop at all before May 12, 2012
+
+SELECT MIN(DATE(created_at)),
+	COUNT(DISTINCT website_session_id) as sessions
+FROM website_sessions ws
+WHERE ws.created_at < "2012-05-12"
+  AND utm_source = 'gsearch'
+  AND utm_campaign = 'nonbrand'
+GROUP BY 
+	YEAR(created_at),
+	WEEK(created_at)
