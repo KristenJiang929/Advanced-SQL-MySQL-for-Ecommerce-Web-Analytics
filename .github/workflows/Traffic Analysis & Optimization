@@ -1,6 +1,10 @@
-Top Traffic Sources: Understand where your customers are coming from and which channels are driving the highest quality traffic.
+Traffic Sources: Understand where your customers are coming from and which channels are driving the highest quality traffic.
 
-Top Traffic Sources:
+1. Top Traffic Sources: 
+  Understand where the bulk of our website sessions are coming from, through yesterday(April 14, 2012)?
+  Break down by UTM source, campaign and referring domain.
+
+
 SELECT * FROM mavenfuzzyfactory.website_sessions;
 SELECT 
   utm_source, 
@@ -12,3 +16,18 @@ WHERE created_at < "2012-04-12"
 GROUP BY utm_source, utm_campaign, http_referer
 ORDER BY number_of_sessions DESC
 
+2.Traffic Source (Gsearch) Conversion Rate:
+  Gsearch nonbrand is our major traffic resource: understand if those sessions are driving sales.
+  Calculate the conversion rate (CVR) from session to order before April 14, 201.
+  Based on what we're paying for clicks, we will need a CVR of at least 4% to make the number work.
+
+USE mavenfuzzyfactory;
+SELECT * FROM mavenfuzzyfactory.orders;
+SELECT COUNT(DISTINCT ws.website_session_id) as sessions,
+	COUNT(DISTINCT o.order_id) as orders,
+    COUNT(DISTINCT ws.website_session_id)/COUNT(DISTINCT o.order_id) as session_to_order_conv_rate
+FROM website_sessions ws
+LEFT JOIN orders o USING(website_session_id)
+WHERE ws.created_at < "2012-04-14"
+	AND utm_source = 'gsearch'
+    AND utm_campaign = 'nonbrand'
