@@ -17,7 +17,8 @@ In this section we'll dive into page-level website data to compare traffic and c
 
 
 
-3.*MID-COURSE PROJECT: Preparing data for the executive board meeting
+3.*MID-COURSE PROJECT: 
+Preparing data for the executive board meeting
 
 
 
@@ -28,7 +29,8 @@ In this section we’ll dig deeper into our traffic channel mix, explore paid vs
 5.Product-Level Analysis
 In this section we’ll use MySQL to break down product-level sales and conversion rates, analyze cross-selling patterns, and use refund rates to keep a pulse on quality.
 
-
+6.*FINAL PROJECT: 
+Building a data-driven growth story for potential investors
 
 6.User-Level Analysis
 In this section we’ll take a closer look at user behavior and repeat sessions, and use MySQL techniques to identify our most valuable customers and explore which channels they are coming from.
