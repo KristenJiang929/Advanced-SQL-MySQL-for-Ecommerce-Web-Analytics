@@ -24,10 +24,10 @@ ORDER BY number_of_sessions DESC
 USE mavenfuzzyfactory;
 SELECT * FROM mavenfuzzyfactory.orders;
 SELECT COUNT(DISTINCT ws.website_session_id) as sessions,
-	COUNT(DISTINCT o.order_id) as orders,
-    COUNT(DISTINCT ws.website_session_id)/COUNT(DISTINCT o.order_id) as session_to_order_conv_rate
+  COUNT(DISTINCT o.order_id) as orders,
+  COUNT(DISTINCT o.order_id)/COUNT(DISTINCT ws.website_session_id) as session_to_order_conv_rate
 FROM website_sessions ws
 LEFT JOIN orders o USING(website_session_id)
 WHERE ws.created_at < "2012-04-14"
-	AND utm_source = 'gsearch'
-    AND utm_campaign = 'nonbrand'
+  AND utm_source = 'gsearch'
+  AND utm_campaign = 'nonbrand''
